@@ -1,4 +1,4 @@
-package com.edhou.songr;
+package com.edhou.songr.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

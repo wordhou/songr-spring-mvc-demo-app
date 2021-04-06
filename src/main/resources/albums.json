@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Dark Side of the Asteroid",
+    "artist": "Magenta Floyd",
+    "length": 4200,
+    "songCount" : 11,
+    "imageUrl" : "layered-peaks-haikei.svg"
+  },
+  {
+    "title": "The Grey Album",
+    "artist": "The Beetles",
+    "length": 4182,
+    "songCount" : 13,
+    "imageUrl" : "low-poly-grid-haikei.svg"
+  },
+  {
+    "title": "Lead Zeppelin XVII",
+    "artist": "Lead Zeppelin",
+    "length": 5200,
+    "songCount" : 12,
+    "imageUrl" : "stacked-steps-haikei.svg"
+  }
+]

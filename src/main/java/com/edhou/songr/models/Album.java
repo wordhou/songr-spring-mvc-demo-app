@@ -15,9 +15,7 @@ public class Album {
         this.imageUrl = imageUrl;
     }
 
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() { return title; }
 
     public String getArtist() {
         return artist;
@@ -29,6 +27,10 @@ public class Album {
 
     public int getLength() {
         return length;
+    }
+
+    public String getRunTime() {
+        return String.format("%d minutes %d seconds", length / 60, length % 60);
     }
 
     public String getImageUrl() {
