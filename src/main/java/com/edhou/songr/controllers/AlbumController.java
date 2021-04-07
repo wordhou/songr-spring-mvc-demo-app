@@ -1,7 +1,7 @@
 package com.edhou.songr.controllers;
 
 import com.edhou.songr.models.Album;
-import com.edhou.songr.models.AlbumRepository;
+import com.edhou.songr.services.AlbumRepository;
 import com.edhou.songr.services.FileUploadService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
