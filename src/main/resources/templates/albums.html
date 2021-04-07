@@ -12,7 +12,7 @@
     <h1>Albums</h1>
     <div class="albums-list">
         <div th:each="album : ${albums}" class="album-listing">
-            <img th:src="${album.imageUrl}" />
+            <img th:src="@{${album.imagePath}}" width="200" height="200"/>
             <div class="album-listing-content">
                 <h1 th:text="${album.title}">test</h1>
                 <h2 th:text="${album.artist}"></h2>
@@ -20,6 +20,9 @@
                 <p>Number of Songs: <span th:text="${album.songCount}" /></p>
             </div>
         </div>
+    </div>
+    <h1>Add new album</h1>
+    <div class="album-listing" th:replace="partials/add-album :: add-album">
     </div>
 </main>
 <footer th:replace="partials/footer :: footer"></footer>
