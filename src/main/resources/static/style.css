@@ -25,6 +25,10 @@ body > header > h2 {
   font-weight: bold;
 }
 
+a {
+  text-decoration: none;
+}
+
 .navbar-top {
   padding: 0.2em;
 }
@@ -49,7 +53,7 @@ body > footer {
 main {
   padding: 0.5em 1em;
   font: 1em Helvetica, sans-serif;
-  max-width: 60em;
+  max-width: 50em;
 }
 
 main > h1 {
@@ -79,6 +83,7 @@ main > h2 {
 
 .album-listing-content {
   padding: 0.5em;
+  flex: 1 auto;
 }
 
 .album-listing-content > h1 {
@@ -91,4 +96,83 @@ main > h2 {
   margin: 0.2em 1.3em;
   font-style: italic;
   font-size: 1em;
+}
+
+.album-song-list {
+  margin: 1em 0 0 1em;
+}
+
+.song-short-listing {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.song-short-right {
+  font-style: italic;
+  color: #666;
+}
+
+.album-listing-content {
+}
+
+.album-listing-content h1 {
+  margin: 0.4em 0 0.2em 0.4em;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.album-listing-content h2 {
+  margin: 0.2em;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.song-detail {
+  padding: 1em;
+  background: lightslategrey;
+  margin: 0.5em;
+}
+
+.song-detail h1 {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.song-detail h2 {
+  font-size: 1.2em;
+}
+
+.editable-field {
+  display: flex;
+  flex-flow: row;
+}
+
+.editable-field > label:hover {
+  cursor: edit;
+  color: #668;
+}
+
+.toggleable-edit {
+  margin-left: 1em;
+  opacity: 0;
+  pointer-events: none;
+  align-items: baseline;
+}
+
+.toggleable-edit:focus-within {
+  opacity: 1;
+  pointer-events: all;
+}
+
+a.album-link {
+  color: black;
+}
+
+a.album-link:hover {
+  color: black;
+}
+
+a.album-link:active {
+  color: black;
 }

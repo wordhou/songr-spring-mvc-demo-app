@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Album</title>
+</head>
+<body>
+<div class="album-listing" th:fragment="listing(album)">
+    <a th:href="'/albums/' + ${album.id}">
+        <img th:src="@{${album.imagePath}}" width="200" height="200"/>
+    </a>
+    <div class="album-listing-content">
+        <a th:href="'/albums/' + ${album.id}">
+            <h1 th:text="${album.title}"></h1>
+        </a>
+        <h2 th:text="${album.artist}"></h2>
+        <p>Runtime: <span th:text="${album.runTime}" /></p>
+        <p>Number of Songs: <span th:text="${album.songCount}" /></p>
+        <ul class="album-song-list">
+            <th:block th:each="song : ${album.songs}">
+                <li th:replace="partials/song :: short(song=${song})"></li>
+            </th:block>
+        </ul>
+    </div>
+</div>
+
+<div class="album-detail" th:fragment="detail(album)">
+    <img th:src="@{${album.imagePath}}" width="400" height="400"/>
+    <div class="album-listing-content">
+        <section class="editable-field">
+            <label for="edit-album-title">
+                <h1 th:text="${album.title}">test</h1>
+            </label>
+            <form class="toggleable-edit" th:action="@{/albums/{id}?_method=put(id=${album.id})}" method="post">
+                <input type="text" id="edit-album-title" name="title" th:value="${album.title}"></input>
+                <input type="submit" value="Submit"></input>
+            </form>
+        </section>
+
+        <section class="editable-field">
+            <label for="edit-album-artist">
+                <h2 th:text="${album.artist}"></h2>
+            </label>
+            <form class="toggleable-edit" th:action="@{/albums/{id}?_method=put(id=${album.id})}" method="post">
+                <input type="text" id="edit-album-artist" name="artist" th:value="${album.artist}"></input>
+                <input type="submit" value="Submit"></input>
+            </form>
+        </section>
+
+        <section class="editable-field">
+            <label for="edit-album-length">
+                Runtime: <span th:text="${album.runTime}" />
+            </label>
+            <form class="toggleable-edit" th:action="@{/albums/{id}?_method=put(id=${album.id})}" method="post">
+                <input type="text" id="edit-album-length" name="length" th:value="${album.length}"></input>
+                <input type="submit" value="Submit"></input>
+            </form>
+        </section>
+
+        <section class="editable-field">
+            <label for="edit-album-song-count">
+                Song count: <span th:text="${album.songCount}" />
+            </label>
+            <form class="toggleable-edit" th:action="@{/albums/{id}?_method=put(id=${album.id})}" method="post">
+                <input type="text" id="edit-album-song-count" name="songCount" th:value="${album.songCount}"></input>
+                <input type="submit" value="Submit"></input>
+            </form>
+        </section>
+    </div>
+</div>
+
+<section class="add-album" th:fragment="add">
+    <form action="/albums" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <label for="add-album-title">Title:</label>
+            <input id="add-album-title" type="text" name="title"></input>
+        </fieldset>
+        <fieldset>
+            <label for="add-album-artist">Artist:</label>
+            <input id="add-album-artist" type="text" name="artist"></input>
+        </fieldset>
+        <fieldset>
+            <label for="add-album-songcount">Song Count:</label>
+            <input id="add-album-songcount" type="number" name="songCount"></input>
+        </fieldset>
+        <fieldset>
+            <label for="add-album-length">Album length:</label>
+            <input id="add-album-length" type="number" name="length"></input>
+        </fieldset>
+        <fieldset>
+            <label for="add-album-image">Upload album image:</label>
+            <input id="add-album-image" type="file" name="image" accept="image/svg, image/png, image/jpg"></input>
+        </fieldset>
+
+        <input type="submit" value="Submit"></input>
+    </form>
+</section>
+
+</body>
+</html>
