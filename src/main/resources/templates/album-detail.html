@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Albums</title>
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header th:replace="partials/header :: header"></header>
+<main>
+    <h1 th:text="${album.title}"></h1>
+    <h2 th:text="${album.artist}"></h2>
+    <div th:replace="partials/album :: detail(album=${album})">
+    </div>
+    <section class="song-list">
+        <th:block th:each="song : ${album.songs}">
+            <div th:replace="partials/song :: detail(song=${song})"></div>
+        </th:block>
+    </section>
+
+    <section th:replace="partials/song :: add(album=${album})"></section>
+</main>
+<footer th:replace="partials/footer :: footer"></footer>
+</body>
+</html>

@@ -3,27 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Albums</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header th:replace="partials/header :: header"></header>
 <main>
     <h1>Albums</h1>
     <div class="albums-list">
-        <div th:each="album : ${albums}" class="album-listing">
-            <img th:src="@{${album.imagePath}}" width="200" height="200"/>
-            <div class="album-listing-content">
-                <h1 th:text="${album.title}">test</h1>
-                <h2 th:text="${album.artist}"></h2>
-                <p>Runtime: <span th:text="${album.runTime}" /></p>
-                <p>Number of Songs: <span th:text="${album.songCount}" /></p>
-            </div>
+        <div th:each="album : ${albums}">
+            <div th:replace="partials/album :: listing(album=${album})"></div>
         </div>
     </div>
     <h1>Add new album</h1>
-    <div class="album-listing" th:replace="partials/add-album :: add-album">
-    </div>
+    <div th:replace="partials/album :: add"></div>
 </main>
 <footer th:replace="partials/footer :: footer"></footer>
 </body>

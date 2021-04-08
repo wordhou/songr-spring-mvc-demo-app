@@ -40,6 +40,22 @@ public class Song {
         return album;
     }
 
+    public String getRunTime() {
+        return String.format("%d minutes, %d seconds", length / 60, length % 60);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setTrackNumber(int trackNumber) {
+        this.trackNumber = trackNumber;
+    }
+
     public long getId() {
         return id;
     }

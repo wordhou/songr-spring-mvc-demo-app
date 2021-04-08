@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <title>Song Listing</title>
+</head>
+<body>
+<div class="song-detail" th:fragment="detail(song)">
+    <section class="editable-field">
+        <label th:for="'edit-song-title' + ${song.id}">
+            <h1 th:text="${song.title}"></h1>
+        </label>
+        <form class="toggleable-edit"
+          th:action="@{/albums/{a_id}/songs/{s_id}?_method=put(a_id=${song.album.id}, s_id=${song.id})}"
+              method="post">
+            <input type="text" th:id="'edit-song-title' + ${song.id}" name="title" th:value="${song.title}"></input>
+            <input type="submit" value="Submit"></input>
+        </form>
+    </section>
+
+    <section class="editable-field">
+    <label th:for="'edit-track-number' + ${song.id}">
+        <p>Track number: <span th:text="${song.trackNumber}"></span></p>
+    </label>
+    <form class="toggleable-edit"
+          th:action="@{/albums/{a_id}/songs/{s_id}?_method=put(a_id=${song.album.id}, s_id=${song.id})}"
+          method="post">
+        <input type="number" th:id="'edit-track-number' + ${song.id}" name="trackNumber" th:value="${song.trackNumber}"></input>
+        <input type="submit" value="Submit"></input>
+    </form>
+    </section>
+
+    <section class="editable-field">
+        <label th:for="'edit-length' + ${song.id}">
+            <p>Runtime: <span th:text="${song.runTime}"></span></p>
+        </label>
+        <form class="toggleable-edit"
+              th:action="@{/albums/{a_id}/songs/{s_id}?_method=put(a_id=${song.album.id}, s_id=${song.id})}"
+              method="post">
+            <input type="number" th:id="'edit-length' + ${song.id}" name="length" th:value="${song.length}"></input>
+            <input type="submit" value="Submit"></input>
+        </form>
+    </section>
+</div>
+
+<li class="song-short-listing" th:fragment="short(song)">
+    <div class="song-short-left">
+        <th:block th:text="${song.trackNumber}"></th:block>. <span th:text="${song.title}"></span>
+    </div>
+    <div class="song-short-right">
+        <span th:text="${song.runTime}"></span>
+    </div>
+</li>
+
+<section class="add-song song-detail" th:fragment="add(album)">
+    <form th:action="@{/albums/{album_id}/songs(album_id=${album.id})}" method="post">
+        <h1>Add song to album:</h1>
+        <fieldset>
+            <label for="song-title-input">Song title:</label>
+            <input type="text" id="song-title-input" name="title"></input>
+        </fieldset>
+        <fieldset>
+            <label for="track-number-input">Track number:</label>
+            <input type="number" id="track-number-input"
+                   name="trackNumber" th:value="${album.minUnusedTrackNumber}"></input>
+        </fieldset>
+        <fieldset>
+            <label for="song-length-input">Song length:</label>
+            <input type="number" id="song-length-input" name="length"></input>
+        </fieldset>
+        <input type="submit" value="Add Song"></input>
+    </form>
+</section>
+</body>
+</html>

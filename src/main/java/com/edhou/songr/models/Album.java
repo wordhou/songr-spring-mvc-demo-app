@@ -1,6 +1,7 @@
 package com.edhou.songr.models;
 
 import javax.persistence.*;
+import java.util.Comparator;
 import java.util.List;
 
 @Entity
@@ -10,7 +11,7 @@ public class Album {
     int songCount;
     int length;
     String imageUrl;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "album")
     List<Song> songs;
 
     @Id
@@ -37,18 +38,36 @@ public class Album {
         this.imageUrl = imageUrl;
     }
 
-    public String getTitle() { return title; }
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getArtist() {
         return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 
     public int getSongCount() {
         return songCount;
     }
 
+    public void setSongCount(int songCount) {
+        this.songCount = songCount;
+    }
+
     public int getLength() {
         return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
     }
 
     public String getRunTime() {
@@ -72,7 +91,18 @@ public class Album {
         return songs.remove(song);
     }
 
+    public int getMinUnusedTrackNumber() {
+        int mex = 1;
+        songs.sort(Comparator.comparing(Song::getTrackNumber));
+        for (Song song : songs) {
+            if (song.trackNumber == mex) mex++;
+            else return mex;
+        }
+        return mex;
+    }
+
     public List<Song> getSongs() {
+        songs.sort(Comparator.comparing(Song::getTrackNumber));
         return songs;
     }
 
